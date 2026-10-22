@@ -1,5 +1,8 @@
 # ledger-core
 
+[![CI](https://github.com/heisjack88-sudo/ledger-core/actions/workflows/ci.yml/badge.svg)](https://github.com/heisjack88-sudo/ledger-core/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 A **double-entry ledger core**: money moves exactly once, invariants are enforced by PostgreSQL, and every posted entry emits a domain event in the same transaction.
 
 Built as a portfolio project for senior full-stack roles in fintech. The interesting part is not the CRUD — it is what happens under **concurrency, retries and crashes**.
