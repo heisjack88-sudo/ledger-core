@@ -10,7 +10,7 @@ let app: FastifyInstance;
 
 beforeAll(async () => {
   context = await createTestDb();
-  app = buildApp(new LedgerService(context.db));
+  app = await buildApp(new LedgerService(context.db));
 }, 60_000);
 
 afterAll(async () => {

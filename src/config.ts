@@ -1,12 +1,21 @@
-const LOCAL_DATABASE_URL = 'postgres://postgres:postgres@localhost:5432/ledger';
-
 /**
  * Application traffic. On Neon this must be the **pooled** endpoint
  * (hostname contains `-pooler`): PgBouncer in transaction mode keeps the
  * connection count sane for a long-running Fastify server.
+ *
+ * Fail closed: no silent fallback to a localhost URL with default
+ * credentials. A missing DATABASE_URL is a misconfiguration, and crashing
+ * at boot with an actionable message beats quietly connecting somewhere
+ * unintended (and unauthenticated) in production.
  */
 export function databaseUrl(): string {
-  return process.env.DATABASE_URL ?? LOCAL_DATABASE_URL;
+  const url = process.env.DATABASE_URL;
+  if (url === undefined || url.length === 0) {
+    throw new Error(
+      'DATABASE_URL is not set. Run `neon env pull` (Neon) or copy .env.example to .env (local Postgres).',
+    );
+  }
+  return url;
 }
 
 /**

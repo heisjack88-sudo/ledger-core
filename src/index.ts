@@ -29,7 +29,7 @@ try {
   process.exit(1);
 }
 
-const app = buildApp(new LedgerService(db), { logger: true });
+const app = await buildApp(new LedgerService(db), { logger: true });
 await app.listen({ port: httpPort(), host: '0.0.0.0' });
 
 app.log.info(

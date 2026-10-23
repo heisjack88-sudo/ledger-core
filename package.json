@@ -20,6 +20,8 @@
     "neon:deploy": "neon deploy"
   },
   "dependencies": {
+    "@fastify/helmet": "^13.2.0",
+    "@fastify/rate-limit": "^11.2.1",
     "@neon/config": "^1.9.3",
     "@neon/env": "^1.6.4",
     "fastify": "^5.12.7",
